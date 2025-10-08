@@ -20,6 +20,65 @@ Taskr is a simple collaborative task management web application inspired by Kanb
 
 ---
 
+## Setup & Usage  
+
+### 1. Clone the repository  
+
+```
+git clone https://github.com/Di0go/Taskr
+cd taskr  
+```
+
+### 2. Create a virtual environment  
+```
+python -m venv venv  
+source venv/bin/activate   # macOS/Linux  
+venv\Scripts\activate      # Windows  
+```
+
+### 3. Install dependencies  
+```
+pip install -r requirements.txt  
+```
+
+### 4. Set up the django secret key and environment variables
+Copy the example environment file and edit it:  
+```
+cp .env.example .env
+```  
+
+Then open `.env` and set your values:  
+```
+DJANGO_SECRET_KEY=our-key
+```
+
+### 5. Apply migrations  
+After setting up your environment:  
+```
+python manage.py migrate
+```
+
+💡 Run this command every time migrations have been added.
+
+If you modify models, create new migrations with:  
+```
+python manage.py makemigrations
+```
+
+Commit migration files so others can apply them.
+
+---
+
+## Collaboration Guidelines  
+
+- Never commit `.env` or `db.sqlite3`  
+- Always commit migration files (`migrations/*.py`)  
+- Run `python manage.py migrate` after every pull (just to be safe)
+- Each developer should have their own `.env` file and local database  
+- Never leak the secret key
+
+---
+
 ## Tech Stack  
 
 - **Backend**: Django (Python)  
@@ -41,18 +100,6 @@ taskr/ # Main project directory
 ├── states/ # Customizable project columns
 ├── tasks/ # Task creation & management
 └── collaboration/ # Project members & assignments
-```
-
-Each app contains:  
-
-```
-app_name/
-├── models.py # Data models
-├── views.py # Presentation & logic
-├── urls.py # Endpoints
-├── templates/ # HTML templates
-├── static/ # CSS, JS, Images
-└── tests.py # Unit tests
 ```
 
 ---
