@@ -58,6 +58,12 @@ After setting up your environment:
 python manage.py migrate
 ```
 
+### 5. Create super user  
+After applying the migration files:
+```
+python manage.py createsuperuser
+```
+
 💡 Run this command every time migrations have been added.
 
 If you modify models, create new migrations with:  
