@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Taskr Projects</title>
+</head>
+
+<body>
+    <h1>Welcome to the Projects page</h1>
+    <p>Hello, {{ user.username }}!</p>
+
+    <form method="post" action="{% url 'users:logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+</body>
+
+</html>
