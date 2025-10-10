@@ -47,12 +47,12 @@ Copy the example environment file and edit it:
 cp .env.example .env
 ```
 
-Generating a secret key
+Generate a django secret key
 ```
 python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
 
-Then open `.env` and set your values:  
+Then open `.env` and set the DJANGO_SECRET_KEY to the one you generated:  
 ```
 DJANGO_SECRET_KEY=YOUR-SECRET-KEY
 ```
