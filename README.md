@@ -45,11 +45,16 @@ pip install -r requirements.txt
 Copy the example environment file and edit it:  
 ```
 cp .env.example .env
-```  
+```
+
+Generating a secret key
+```
+python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
 
 Then open `.env` and set your values:  
 ```
-DJANGO_SECRET_KEY=our-key
+DJANGO_SECRET_KEY=YOUR-SECRET-KEY
 ```
 
 ### 5. Apply migrations  
@@ -62,6 +67,11 @@ python manage.py migrate
 After applying the migration files:
 ```
 python manage.py createsuperuser
+```
+
+### 7. Run the server
+```
+python manage.py runserver
 ```
 
 💡 Remember to run this command every time migrations have been added!
