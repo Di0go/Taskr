@@ -5,6 +5,8 @@
 # <diogopinto> 2025+
 # ----------------------------------------------
 
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from .models import CustomUser
 from django.urls import reverse
@@ -91,10 +93,42 @@ class RegisterTests(TestCase):
 # EN: Tests for the avatar field in the users/models.py
 class AvatarTests(TestCase):
 
-# TODO: Fazer os testes
+    # EN: Test a correct avatar upload (> 1MB)
+    def test_valid_avatar_upload(self):
 
-    def test_avatar_size(self):
-        self.assertTrue(True)
+        # EN: Create a test image with 4 bytes
+        test_image = SimpleUploadedFile(
+            "avatar.png", b"a" * 4, content_type="image/png"
+        )
 
-    def test_avatar_file_type(self):
-        self.assertTrue(True)
+        user = CustomUser(username="imguser", password="StrongPassword123", avatar=test_image)
+        user.full_clean()
+        user.save()
+
+        self.assertTrue(CustomUser.objects.filter(username="imguser").exists())
+
+    # EN: Test a incorrect avatar upload (< 1MB)
+    def test_avatar_too_large(self):
+
+        # EN: Create a test image with 1MB + 1 byte
+        test_image = SimpleUploadedFile(
+            "big.png",
+            b"a" * (1024 * 1024 + 1),
+            content_type="image/png",
+        )
+
+        user = CustomUser(username="biguser", password="StrongPassword123", avatar=test_image)
+        with self.assertRaises(ValidationError):
+            user.full_clean()
+
+    # EN: Test incorrect file extensions
+    def test_invalid_extension(self):
+
+        # EN: Create a file with a .txt extension
+        invalid_file = SimpleUploadedFile(
+            "avatar.txt", b"some text", content_type="text/plain"
+        )
+
+        user = CustomUser(username="baduser", password="StrongPassword123", avatar=invalid_file)
+        with self.assertRaises(ValidationError):
+            user.full_clean()

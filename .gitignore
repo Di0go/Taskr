@@ -19,3 +19,6 @@ db.sqlite3
 # EN: Mac / Windows noise
 .DS_Store
 Thumbs.db
+
+# EN: User avatars
+src/users/avatars/*
