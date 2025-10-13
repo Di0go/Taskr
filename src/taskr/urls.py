@@ -14,13 +14,13 @@ urlpatterns = [
 
     path('projects/', include('projects.urls')),
 
-    # PT: Mapping dos URLs de autenticação
+    # EN: Mapping for the auth URLs
     path('users/', include('users.urls')),
     path('login/', lambda request: redirect('users:login')),
     path('logout/', lambda request: redirect('users:logout')),
-    #path('register/', lambda request: redirect('users:register')),
+    path('register/', lambda request: redirect('users:register')),
 
-    # PT: Redirecionamos o / diretamente para o /projects/
-    path('', include('projects.urls')),
+    # EN: Redirect form / to /projects
+    path('', lambda request: redirect('/projects')),
 
 ]
