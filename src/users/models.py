@@ -22,7 +22,7 @@ class CustomUser(AbstractUser):
 
     # EN: ImageField - Avatar
     avatar = models.ImageField(
-        upload_to='avatars/', 
+        upload_to='users/avatars/', 
         null=True, 
         blank=True,
         validators=[
