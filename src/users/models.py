@@ -14,6 +14,7 @@ from django.db import models
 
 class CustomUser(AbstractUser):
 
+    # TODO: Fazer um validator para o tamanho do avatar e para o file type
     # EN: ImageField - Avatar
     avatar = models.ImageField(
         upload_to='avatars/', 
