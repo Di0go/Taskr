@@ -1,6 +1,6 @@
 # Taskr  
 
-Taskr is a simple collaborative task management web application inspired by Kanban boards (like Trello), but lighter and more focused on the essentials.  
+Taskr is a light collaborative task managment web application built with django.
 
 ---
 
@@ -12,11 +12,6 @@ Taskr is a simple collaborative task management web application inspired by Kanb
 - Tasks (create, edit, move, delete)  
 - Collaboration (add/remove members, assign tasks)  
 - Navigation (sidebar with projects)  
-
-**Future:**  
-- Labels  
-- Notifications  
-- Permissions  
 
 ---
 
@@ -95,16 +90,6 @@ Commit migration files so others can apply them.
 
 ---
 
-## Tech Stack  
-
-- **Backend**: Django (Python)  
-- **Database**: SQLite (via Django ORM)  
-- **Frontend**: Django Templates + Bootstrap  
-- **Auth**: Django built-in User system  
-- **Testing**: Django unittest + GitHub Actions  
-
----
-
 ## Architecture  
 
 ```
@@ -124,7 +109,7 @@ taskr/ # Main project directory
 
 ```
 Users
-└── User (Django built-in)
+└── CustomUser (Extended from the Django built-in)
 └── avatar 
 
 Projects
