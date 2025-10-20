@@ -13,5 +13,5 @@ app_name = "projects"
 urlpatterns = [
     # EN: /projects/ will lead here
     path("", views.index, name="index"),
-
+    path("<int:project_id>/", views.detail, name="detail"),
 ]

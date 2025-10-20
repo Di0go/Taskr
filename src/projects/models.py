@@ -14,3 +14,6 @@ class Project(models.Model):
 
     # EN: related_name solves the reverse accessor clash issue
     members = models.ManyToManyField(CustomUser, related_name="members")
+
+    def __str__(self):
+        return self.name

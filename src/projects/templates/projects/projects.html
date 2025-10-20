@@ -10,6 +10,12 @@
     <h1>Welcome to the Projects page</h1>
     <p>Hello, {{ user.username }}!</p>
 
+    <ul>
+    {% for project in current_user_projects_list %}
+        <li><a href="/projects/{{ project.id }}/">{{ project }}</a></li>
+    {% endfor %}
+    </ul>
+
     <form method="post" action="{% url 'users:logout' %}">
         {% csrf_token %}
         <button type="submit">Logout</button>
