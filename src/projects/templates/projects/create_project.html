@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<body>
+  <h1>Create a new project</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create</button>
+  </form>
+
+  <a href="{% url 'projects:index' %}">Cancel</a>
+</body>
+
+</html>
