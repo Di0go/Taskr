@@ -26,7 +26,7 @@ def index(request):
     current_user_projects_list = Project.objects.filter(members=current_user)
     context = {"current_user_projects_list" : current_user_projects_list}
 
-    return render(request, "projects/projects.html", context)
+    return render(request, "projects/projects_list.html", context)
 
 
 
@@ -36,7 +36,7 @@ def detail(request, project_id):
 
     project = get_object_or_404(Project, pk=project_id, members=request.user)
 
-    return render(request, "projects/detail.html", {"project": project})
+    return render(request, "projects/project.html", {"project": project})
 
 
 
