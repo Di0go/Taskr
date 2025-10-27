@@ -34,9 +34,8 @@ def index(request):
 @login_required
 def detail(request, project_id):
 
-    project = Project.objects.get(pk=project_id)
+    project = get_object_or_404(Project, pk=project_id, members=request.user)
 
-    # TODO: Verificar se o utilizador é dono/membro do projeto, caso contrário, mandar para o 404
     return render(request, "projects/detail.html", {"project": project})
 
 
