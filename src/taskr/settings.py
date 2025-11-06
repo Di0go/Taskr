@@ -145,3 +145,7 @@ LOGIN_URL = "/login/"
 
 # EN: 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# EN: Media needs to be in this directory in order to be accesible by django's db abstraction
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

@@ -7,7 +7,6 @@ venv/
 # EN: Python cache from the Django apps
 __pycache__
 /staticfiles/
-media/
 
 # EN: SQLite database --- django migrations handles this without causing conflicts
 db.sqlite3
@@ -21,4 +20,5 @@ db.sqlite3
 Thumbs.db
 
 # EN: User avatars
-src/users/avatars/*
+src/media/users/avatars/*
+!src/media/users/avatars/.gitkeep

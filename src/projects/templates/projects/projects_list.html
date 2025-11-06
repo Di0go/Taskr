@@ -9,6 +9,12 @@
 <body>
     <h1>Welcome to the Projects page</h1>
     <p>Hello, {{ user.username }}!</p>
+    {% if user.avatar and user.avatar.name %}
+        <img src="{{ user.avatar.url }}" alt="{{ user.username }}'s avatar" width="100">
+    {% else %}
+        <p>No avatar uploaded.</p>
+    {% endif %}
+
 
     <ul>
     {% for project in current_user_projects_list %}
