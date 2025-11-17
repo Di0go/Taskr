@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Project
+from states.models import State
 from .forms import ProjectForm
 
 
@@ -34,9 +35,10 @@ def index(request):
 @login_required
 def detail(request, project_id):
 
-    project = get_object_or_404(Project, pk=project_id, members=request.user)
+    l_project = get_object_or_404(Project, pk=project_id, members=request.user)
+    l_states = State.objects.filter(project=l_project)
 
-    return render(request, "projects/project.html", {"project": project})
+    return render(request, "projects/project.html", {"project": l_project, "states": l_states})
 
 
 
@@ -48,12 +50,18 @@ def create_project(request):
         form = ProjectForm(request.POST)
 
         if form.is_valid():
-            project = form.save(commit=False)
+            l_project = form.save(commit=False)
 
             # EN: Add the user that's creating the project as the owner and member
-            project.owner = request.user
-            project.save()
-            project.members.add(request.user)
+            l_project.owner = request.user
+            l_project.save()
+            l_project.members.add(request.user)
+
+            # EN: Create the default project states
+            state_backlog = State(name="Backlog", order=0, project=l_project).save()
+            state_in_progress = State(name="In Progress", order=1, project=l_project).save()
+            state_revision = State(name="Revision", order=2, project=l_project).save()
+            state_done = State(name="Done", order=3, project=l_project).save()
 
             return redirect("projects:index")
     else:

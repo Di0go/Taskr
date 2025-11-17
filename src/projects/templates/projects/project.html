@@ -18,6 +18,24 @@
         </form>
     {% endif %}
 
+    <p> Project Task States </p>
+    <ul>
+    {% for state in states %}
+        <li>
+            {{ state }}
+            <form method="post" action="{% url 'states:delete_state' state.id %}" style="display: inline;">
+            {% csrf_token %}
+                <button type="submit">Delete State</button>
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <a href="{% url 'states:create_state' project.id %}">
+        <button>Create State</button>
+    </a>
+
+    <br>
     <a href="{% url 'projects:index' %}">Go back</a>
 </body>
 
