@@ -1,0 +1,192 @@
+body {
+            margin: 0;
+            padding: 0;
+            background-color: #cbcbcb;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .create-project-container {
+            background-color: rgb(72, 72, 72);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 50px;
+            max-width: 600px;
+            width: 100%;
+            margin: 20px;
+            
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-section h1 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .header-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .header-icon i {
+            font-size: 35px;
+            color: white;
+        }
+
+        .form-label {
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+        }
+
+        .helptext {
+            font-size: 0.85rem;
+            color: #ffffff;
+            margin-top: 5px;
+        }
+
+        .errorlist {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0;
+        }
+
+        .errorlist li {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 5px;
+        }
+
+        .error .form-control,
+        .error .form-select {
+            border-color: #dc3545;
+        }
+
+        .btn-create {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn-create:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-cancel {
+            display: block;
+            text-align: center;
+            color: #e6e6e6;
+            text-decoration: none;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .btn-cancel:hover {
+            color: #a84343;
+        }
+
+        .btn-cancel i {
+            margin-right: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        /* Estilização personalizada para campos Django */
+        form p {
+            margin-bottom: 25px;
+        }
+
+        form p label {
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        
+
+        form p input[type="text"],
+        form p input[type="email"],
+        form p input[type="number"],
+        form p input[type="date"],
+        form p textarea,
+        form p select {
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        form p input:focus,
+        form p textarea:focus,
+        form p select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+        }
+
+        form p textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        @media (max-width: 768px) {
+            .create-project-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+
+            .header-section h1 {
+                font-size: 1.5rem;
+            }
+
+            .header-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header-icon i {
+                font-size: 30px;
+            }
+        }
