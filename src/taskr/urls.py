@@ -24,6 +24,7 @@ urlpatterns = [
 
     # EN: Redirect form / to /projects
     path('', lambda request: redirect('/projects')),
+    path("states/", include("states.urls")),
 
 ]
 

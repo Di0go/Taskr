@@ -18,6 +18,9 @@ def validate_file_size(l_file, max_file_size):
     if l_file.size > max_size_mb:
         raise ValidationError(f"The image size shouldn't exceed {max_size_mb} MB")
 
+def avatar_file_size_validator(file):
+    validate_file_size(file, 1)
+
 class CustomUser(AbstractUser):
 
     # EN: ImageField - Avatar
@@ -27,7 +30,7 @@ class CustomUser(AbstractUser):
         blank=True,
         validators=[
             FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png']),
-            lambda this: validate_file_size(this, 1),
+            avatar_file_size_validator,
         ],
         verbose_name='Avatar'
     )
