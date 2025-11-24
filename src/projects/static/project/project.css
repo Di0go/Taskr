@@ -1,0 +1,215 @@
+/* Project Page Styles */
+
+body {
+    background-color: #0B2447;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px 20px;
+    margin: 0;
+}
+
+.project-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: transparent;
+    border-radius: 12px;
+    /*box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);*/
+    overflow: hidden;
+}
+
+.project-back{
+    text-align: left;
+    
+}
+
+.project-delete-project{
+    text-align: right;
+    
+}
+
+
+/* Content */
+.project-content {
+    padding: 50px;
+}
+
+/* States Grid */
+.states-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* State Card */
+.state-card {
+    background: #19376D;
+    /*border: 2px solid #b8b8b8;*/
+    border-radius: 10px;
+    padding: 25px 20px;
+    width: 200px;
+    height: 140px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Delete button  */
+.state-delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: 1.5px solid #A5D7E8;
+    color: #A5D7E8;
+    font-size: 10px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    line-height: 14px;
+    text-align: center;
+    border-radius: 7px;
+    padding: 0;
+    transition: all 0.2s ease;
+}
+
+.state-delete-btn:hover {
+    background: #dc2626;
+    color: white;
+    border-color: #dc2626;
+    
+}
+
+/* State name pill button */
+.state-name-btn {
+    background: #A5D7E8;
+    color: #0B2447;
+    border: none;
+    padding: 14px 35px;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: default;
+    text-align: center;
+}
+
+/* Create State Card */
+.create-state-card {
+    background: #A5D7E8;
+    border: 2px solid #A5D7E8;
+    border-radius: 10px;
+    width: 200px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.create-state-card:hover {
+    background: #576CBC;
+    border-color: #999;
+    
+}
+
+.create-state-content {
+    text-align: center;
+    color: #0B2447;
+}
+
+.create-state-content .plus-icon {
+    font-size: 2.2rem;
+    font-weight: 300;
+    display: block;
+    margin-bottom: 2px;
+    color: #0B2447;
+    line-height: 1;
+}
+
+.create-state-content .create-text {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #0B2447;
+}
+
+/* Other action buttons */
+.action-button {
+    background: #e5e5e5;
+    border: 1px solid #b8b8b8;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #2d2d2d;
+}
+
+.action-button:hover {
+    background: #d8d8d8;
+}
+
+.btn-delete {
+    background-color: #dc2626;
+    color: white;
+    border-color: #dc2626;
+    
+}
+
+.btn-delete:hover {
+    background-color: #b60101;
+    
+}
+
+.btn-leave {
+    background-color: #f59e0b;
+    color: white;
+    border-color: #f59e0b;
+}
+
+.btn-leave:hover {
+    background-color: #d97706;
+}
+
+.actions-section {
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid #5a5a5a;
+}
+
+.back-link {
+    color: #A5D7E8;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .states-grid {
+        justify-content: center;
+    }
+    
+    .state-card,
+    .create-state-card {
+        width: 150px;
+        height: 100px;
+    }
+    
+    .project-content {
+        padding: 30px;
+    }
+    
+    .state-name-btn {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+}

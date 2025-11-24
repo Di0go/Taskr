@@ -70,7 +70,7 @@
 
             
             <div class="projects-container">
-                <h3 class="mb-4" style="color: #6c757d;">Your Projects:</h3>
+                <h3 class="mb-4" style="color: #A5D7E8;">Your Projects:</h3>
                 
                 {% if current_user_projects_list %}
                     {% for project in current_user_projects_list %}
@@ -81,7 +81,7 @@
                         </a>
                     {% endfor %}
                 {% else %}
-                    <p class="text-muted">Ainda não tem projetos. Clique no botão <i class="bi bi-plus-lg"></i> para criar o seu primeiro projeto!</p>
+                    <p class="text-muted" style="color: #A5D7E8;">Ainda não tem projetos. Clique no botão <i class="bi bi-plus-lg"></i> para criar o seu primeiro projeto!</p>
                 {% endif %}
             </div>
         </div>
