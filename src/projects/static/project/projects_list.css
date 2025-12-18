@@ -124,8 +124,177 @@ body {
             position: fixed;
             top: 20px;
             right: 20px;
+        } 
+
+
+
+        /*Modal Style*/
+
+                
+        .modal-content {
+            background-color: #19366d9b;
+            border: 2px solid #A5D7E8;
+            border-radius: 12px;
+            color: #ffffff;
         }
 
+        .modal-header {
+            border-bottom: 1px solid #576CBC;
+            background-color: #19366d9b;
+            border-radius: 10px 10px 0 0;
+            padding: 20px 25px;
+        }
+
+        .modal-title {
+            color: #A5D7E8;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .modal-body {
+            padding: 30px 25px;
+            background-color: #19366d9b;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #576CBC;
+            background-color: #19366d9b;
+            border-radius: 0 0 10px 10px;
+            padding: 20px 25px;
+        }
+
+        /* Style the close button (X) */
+        .btn-close {
+            filter: invert(1) brightness(1.5);
+            opacity: 0.8;
+        }
+
+        .btn-close:hover {
+            opacity: 1;
+        }
+
+        /* Style form elements inside modal */
+        .modal-body label {
+            color: #A5D7E8;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .modal-body input[type="text"],
+        .modal-body input[type="email"],
+        .modal-body input[type="password"],
+        .modal-body textarea,
+        .modal-body select {
+            background-color: #0b24476d;
+            border: 1px solid #576CBC;
+            color: #ffffff;
+            padding: 12px 15px;
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .modal-body input:focus,
+        .modal-body textarea:focus,
+        .modal-body select:focus {
+            outline: none;
+            border-color: #A5D7E8;
+            background-color: #0b24476d;
+            box-shadow: 0 0 0 3px rgba(165, 215, 232, 0.1);
+        }
+
+        .modal-body input::placeholder,
+        .modal-body textarea::placeholder {
+            color: #8b9cb5;
+        }
+
+        /* Style form paragraphs (Django's form.as_p) */
+        .modal-body p {
+            margin-bottom: 20px;
+        }
+
+        .modal-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Style the modal footer buttons */
+        .modal-footer .btn-secondary {
+            background-color: #576CBC;
+            border-color: #576CBC;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .modal-footer .btn-secondary:hover {
+            background-color: #4a5ba8;
+            border-color: #4a5ba8;
+            transform: translateY(-1px);
+        }
+
+        .modal-footer .btn-primary {
+            background-color: #A5D7E8;
+            border-color: #A5D7E8;
+            color: #0B2447;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .modal-footer .btn-primary:hover {
+            background-color: #8bc5db;
+            border-color: #8bc5db;
+            color: #0B2447;
+            transform: translateY(-1px);
+        }
+
+        /* Backdrop styling (the dark overlay behind modal) */
+        .modal-backdrop {
+            background-color: #0B2447;
+        }
+
+        .modal-backdrop.show {
+            opacity: 0.85;
+        }
+
+        /* Animation improvements */
+        .modal.fade .modal-dialog {
+            transition: transform 0.3s ease-out;
+        }
+
+        /* Error messages styling (if Django shows form errors) */
+        .modal-body .errorlist {
+            background-color: rgba(220, 38, 38, 0.2);
+            border: 1px solid #dc2626;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            list-style: none;
+            color: #fca5a5;
+        }
+
+        .modal-body .errorlist li {
+            margin: 0;
+        }
+
+        /* Help text styling */
+        .modal-body .helptext {
+            display: block;
+            font-size: 0.85rem;
+            color: #8b9cb5;
+            margin-top: 5px;
+        }
+
+
+
+
+        
         @media (max-width: 768px) {
             .sidebar {
                 position: fixed;

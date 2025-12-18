@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Project
 from states.models import State
 from .forms import ProjectForm
+from states.forms import StateForm
 
 
 
@@ -25,7 +26,12 @@ def index(request):
 
     # EN: List for all the projects the user is a member of
     current_user_projects_list = Project.objects.filter(members=current_user)
-    context = {"current_user_projects_list" : current_user_projects_list}
+    
+    form = ProjectForm()
+    
+    context = {"current_user_projects_list" : current_user_projects_list,"form": form}
+
+    
 
     return render(request, "projects/projects_list.html", context)
 
@@ -37,8 +43,10 @@ def detail(request, project_id):
 
     l_project = get_object_or_404(Project, pk=project_id, members=request.user)
     l_states = State.objects.filter(project=l_project)
+    
+    form = StateForm() #new add
 
-    return render(request, "projects/project.html", {"project": l_project, "states": l_states})
+    return render(request, "projects/project.html", {"project": l_project, "states": l_states, "form": form})
 
 
 

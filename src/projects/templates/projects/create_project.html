@@ -15,12 +15,12 @@
 
   <body>
       <div class="create-project-container">
-          <!-- Header -->
+          
           <div class="header-section">
               <h1>Criar Novo Projeto</h1>
           </div>
 
-          <!-- Formulário -->
+          
           <form method="post">
               {% csrf_token %}
               {{ form.as_p }}
