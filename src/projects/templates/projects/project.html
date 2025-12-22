@@ -29,6 +29,8 @@
             </a>
         </div>
 
+        <h1>{{ project.name }}</h1>
+
         <div class="project-delete-project">
             {% if user != project.owner %}
                 <form method="post" action="{% url 'projects:leave_project' project.id %}">
