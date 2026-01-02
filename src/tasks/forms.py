@@ -1,0 +1,11 @@
+from django import forms
+from .models import Task
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ["title", "description"]
+
+class TaskMoveForm(forms.Form):
+    state_id = forms.IntegerField()
+    new_order = forms.IntegerField(required=False)

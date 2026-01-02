@@ -15,6 +15,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('projects/', include('projects.urls')),
+    path('tasks/', include('tasks.urls')),
 
     # EN: Mapping for the auth URLs
     path('users/', include('users.urls')),

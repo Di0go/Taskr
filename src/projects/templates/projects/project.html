@@ -48,8 +48,7 @@
                 </form>
             {% endif %}
         </div>
-
-        
+ 
         
 
 
@@ -66,6 +65,44 @@
                             </button>
                         </form>
                         <div class="state-name-btn">{{ state }}</div>
+
+                        <!-- Criar tarefa -->
+                        <form method="post" action="{% url 'tasks:create' project.id state.id %}">
+                            {% csrf_token %}
+                            <input type="text" name="title" placeholder="Nova tarefa" required>
+                            <input type="text" name="description" placeholder="Descrição (opcional)">
+                            <button type="submit">Adicionar</button>
+                        </form>
+
+                        <!-- Listar tarefas deste estado -->
+                        {% for task in state.tasks.all %}
+                            <div class="task-card">
+                                <strong>{{ task.title }}</strong>
+                                <p>{{ task.description }}</p>
+
+                                <!-- Apagar -->
+                                <form method="post" action="{% url 'tasks:delete' task.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit">Apagar</button>
+                                </form>
+
+                                <!-- Mover -->
+                                <form method="post" action="{% url 'tasks:move' task.id %}">
+                                    {% csrf_token %}
+                                    <select name="state_id">
+                                        {% for s in states %}
+                                            <option value="{{ s.id }}" {% if s.id == state.id %}selected{% endif %}>
+                                                {{ s.name }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit">Mover</button>
+                                </form>
+                            </div>
+                        {% empty %}
+                            <p style="opacity: 0.7;">Sem tarefas.</p>
+                        {% endfor %}
+
                     </div>
                 {% endfor %}
 
