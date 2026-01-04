@@ -9,17 +9,15 @@ body {
 }
 
 .project-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     background: transparent;
     border-radius: 12px;
-    /*box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);*/
     overflow: hidden;
 }
 
-.project-back{
+.project-back {
     text-align: left;
-    
 }
 
 /* Compact project name styling */
@@ -32,42 +30,133 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.project-delete-project{
+.project-delete-project {
     text-align: right;
-    
 }
 
+/* Members Section Styling */
+.members-section {
+    background: rgba(25, 55, 109, 0.5);
+    border: 1px solid rgba(165, 215, 232, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.members-title {
+    color: #A5D7E8;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.members-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.member-badge {
+    background: #576CBC;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.member-badge:hover {
+    background: #6b7ed4;
+    transform: translateY(-1px);
+}
+
+.add-member-form {
+    margin-top: 15px;
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.member-input {
+    flex: 1;
+    background: #0B2447;
+    border: 1px solid #576CBC;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.member-input:focus {
+    outline: none;
+    border-color: #A5D7E8;
+    background: #0f2d5c;
+}
+
+.member-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-add-member {
+    background: #A5D7E8;
+    color: #0B2447;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.btn-add-member:hover {
+    background: #8bc5db;
+    transform: translateY(-1px);
+}
 
 /* Content */
 .project-content {
-    padding: 50px;
+    padding: 50px 20px;
 }
 
-/* States Grid */
+/* States Grid - MUDANÇA PRINCIPAL: display grid ao invés de flex */
 .states-grid {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 15px;
     padding-bottom: 10px;
-    flex-wrap: nowrap;
-    
 }
 
 /* State Card */
 .state-card {
     background: #19376D;
-    border-radius: 10px;
-    padding: 15px;
-    width: 260px;        
-    min-height: 180px;   
-    height: auto;        
+    border-radius: 8px;
+    padding: 12px;
+    min-height: 150px;
+    height: auto;
     position: relative;
-    display: block;      
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
 }
 
-/* Delete button  */
+/* Delete button */
 .state-delete-btn {
     position: absolute;
     top: 10px;
@@ -84,13 +173,21 @@ body {
     border-radius: 7px;
     padding: 0;
     transition: all 0.2s ease;
+    z-index: 10;
 }
 
 .state-delete-btn:hover {
     background: #dc2626;
     color: white;
     border-color: #dc2626;
-    
+}
+
+/* Container for state name - centered */
+.state-name-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
 }
 
 /* State name pill button */
@@ -98,23 +195,260 @@ body {
     background: #A5D7E8;
     color: #0B2447;
     border: none;
-    padding: 10px 14px;
-    border-radius: 25px;
+    padding: 8px 16px;
+    border-radius: 20px;
     font-weight: 600;
-    font-size: 1rem;
-    display: inline-block;
-    margin: 10px 0 12px 0;
+    font-size: 0.9rem;
+    margin: 8px 0 10px 0;
     cursor: default;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 160px;
+    flex-shrink: 0;
+}
+
+/* Task Creation Form Styling */
+.task-create-form {
+    background: rgba(11, 36, 71, 0.5);
+    border: 1px solid rgba(165, 215, 232, 0.2);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.task-form-group {
+    margin-bottom: 8px;
+}
+
+.task-input,
+.task-textarea,
+.task-date,
+.task-select,
+.task-select-full {
+    width: 100%;
+    background: #0B2447;
+    border: 1px solid #576CBC;
+    color: #ffffff;
+    padding: 6px 8px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.task-input:focus,
+.task-textarea:focus,
+.task-date:focus,
+.task-select:focus,
+.task-select-full:focus {
+    outline: none;
+    border-color: #A5D7E8;
+    background: #0f2d5c;
+}
+
+.task-input::placeholder,
+.task-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.task-textarea {
+    resize: vertical;
+    min-height: 40px;
+}
+
+.task-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.btn-add-task {
+    width: 100%;
+    background: #A5D7E8;
+    color: #0B2447;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.btn-add-task:hover {
+    background: #8bc5db;
+    transform: translateY(-1px);
+}
+
+/* Tasks List */
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Task Card - ESTILIZAÇÃO MELHORADA */
+.task-card {
+    background: rgba(87, 108, 188, 0.3);
+    border-left: 3px solid #A5D7E8;
+    border-radius: 6px;
+    padding: 10px;
+    transition: all 0.2s ease;
+}
+
+.task-card:hover {
+    background: rgba(87, 108, 188, 0.5);
+    transform: translateX(2px);
+}
+
+.task-priority-high {
+    border-left-color: #dc2626;
+}
+
+.task-priority-medium {
+    border-left-color: #f59e0b;
+}
+
+.task-priority-low {
+    border-left-color: #10b981;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 6px;
+    gap: 6px;
+}
+
+.task-title {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    flex: 1;
+}
+
+.task-priority-badge {
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.priority-high {
+    background: rgba(220, 38, 38, 0.2);
+    color: #fca5a5;
+}
+
+.priority-medium {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fcd34d;
+}
+
+.priority-low {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6ee7b7;
+}
+
+.task-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    margin: 6px 0;
+    line-height: 1.4;
+}
+
+.task-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin: 6px 0;
+}
+
+.task-meta-item {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.task-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.task-move-form {
+    display: flex;
+    gap: 6px;
+    flex: 1;
+}
+
+.task-move-select {
+    flex: 1;
+    background: #0B2447;
+    border: 1px solid #576CBC;
+    color: #ffffff;
+    padding: 5px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.btn-task-move,
+.btn-task-delete {
+    background: #576CBC;
+    color: #ffffff;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-task-move:hover {
+    background: #6b7ed4;
+}
+
+.btn-task-delete {
+    background: rgba(220, 38, 38, 0.2);
+    color: #fca5a5;
+}
+
+.btn-task-delete:hover {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.no-tasks-message {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 /* Create State Card */
 .create-state-card {
     background: #A5D7E8;
     border: 2px solid #A5D7E8;
-    border-radius: 10px;
-    width: 200px;
-    height: 140px;
+    border-radius: 8px;
+    min-height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,13 +458,9 @@ body {
     box-sizing: border-box;
 }
 
-
-
-
 .create-state-card:hover {
     background: #576CBC;
     border-color: #999;
-    
 }
 
 .create-state-content {
@@ -138,10 +468,8 @@ body {
     color: #0B2447;
 }
 
-
-
 .create-state-content .plus-icon {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 300;
     display: block;
     margin-bottom: 2px;
@@ -150,7 +478,7 @@ body {
 }
 
 .create-state-content .create-text {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: #0B2447;
 }
@@ -176,12 +504,10 @@ body {
     background-color: #dc2626;
     color: white;
     border-color: #dc2626;
-    
 }
 
 .btn-delete:hover {
     background-color: #b60101;
-    
 }
 
 .btn-leave {
@@ -211,12 +537,7 @@ body {
     color: #ffffff;
 }
 
-
-
-
-
-/*Modal styling*/
-
+/* Modal styling */
 .modal-content {
     background-color: #19366d9b;
     border: 2px solid #A5D7E8;
@@ -246,7 +567,6 @@ body {
     border-radius: 0 0 10px 10px;
 }
 
-/* Style the close button */
 .btn-close {
     filter: invert(1);
     opacity: 0.8;
@@ -256,7 +576,6 @@ body {
     opacity: 1;
 }
 
-/* Style form elements inside modal */
 .modal-body label {
     color: #A5D7E8;
     font-weight: 500;
@@ -285,7 +604,6 @@ body {
     background-color: #0f2d5c;
 }
 
-/* Style the buttons */
 .modal-footer .btn-secondary {
     background-color: #576CBC;
     border-color: #576CBC;
@@ -309,7 +627,6 @@ body {
     border-color: #8bc5db;
 }
 
-/* Backdrop styling */
 .modal-backdrop {
     background-color: #0B2447;
 }
@@ -318,38 +635,41 @@ body {
     opacity: 0.8;
 }
 
-/* Animation */
 .modal.fade .modal-dialog {
     transition: transform 0.3s ease-out;
 }
 
-
-
-
-
-
-
-
-
-
 /* Responsive */
 @media (max-width: 768px) {
     .states-grid {
-        justify-content: center;
-    }
-    
-    .state-card,
-    .create-state-card {
-        width: 150px;
-        height: 100px;
+        grid-template-columns: 1fr;
     }
     
     .project-content {
-        padding: 30px;
+        padding: 30px 10px;
     }
     
     .state-name-btn {
-        padding: 10px 25px;
+        padding: 10px 20px;
         font-size: 0.9rem;
+    }
+
+    .members-list {
+        flex-direction: column;
+    }
+
+    .form-group-inline {
+        flex-direction: column;
+    }
+
+    .member-input,
+    .btn-add-member {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+    .states-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
 }

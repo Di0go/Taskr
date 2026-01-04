@@ -40,19 +40,27 @@
         {% endif %}
 
         {% if user == project.owner %}
-        <div style="margin: 15px 0;">
-            <h5 style="color: #ffffff;">Membros do projeto</h5>
+        <div class="members-section">
+            <h5 class="members-title">
+                <i class="bi bi-people-fill"></i> Membros do projeto
+            </h5>
 
-            <div style="color: #ffffff; opacity: 0.9; margin-bottom: 10px;">
+            <div class="members-list">
             {% for m in project.members.all %}
-                <span style="margin-right: 10px;">• {{ m.username }}</span>
+                <span class="member-badge">
+                    <i class="bi bi-person-circle"></i> {{ m.username }}
+                </span>
             {% endfor %}
             </div>
 
-            <form method="post" action="{% url 'projects:add_member' project.id %}">
+            <form method="post" action="{% url 'projects:add_member' project.id %}" class="add-member-form">
             {% csrf_token %}
-            <input type="text" name="username" placeholder="username (ex: diogo)" required>
-            <button type="submit">Adicionar membro</button>
+            <div class="form-group-inline">
+                <input type="text" name="username" placeholder="username (ex: diogo)" required class="member-input">
+                <button type="submit" class="btn-add-member">
+                    <i class="bi bi-person-plus-fill"></i> Adicionar
+                </button>
+            </div>
             </form>
         </div>
         {% endif %}
@@ -91,71 +99,100 @@
                                 ✕
                             </button>
                         </form>
-                        <div class="state-name-btn">{{ state.name }}</div>
+                        <div class="state-name-container">
+                            <div class="state-name-btn">{{ state.name }}</div>
+                        </div>
 
                         <!-- Criar tarefa -->
-                        <form method="post" action="{% url 'tasks:create' project.id state.id %}">
+                        <form method="post" action="{% url 'tasks:create' project.id state.id %}" class="task-create-form">
                             {% csrf_token %}
-                            <input type="text" name="title" placeholder="Nova tarefa" required>
-                            <input type="text" name="description" placeholder="Descrição (opcional)">
-                            <input type="date" name="due_date">
-
-                            <select name="priority">
-                                <option value="low">Low</option>
-                                <option value="medium" selected>Medium</option>
-                                <option value="high">High</option>
-                            </select>
-
-                            <select name="assigned_to">
-                                <option value="">Sem atribuição</option>
-                                {% for member in project.members.all %}
-                                    <option value="{{ member.id }}">{{ member.username }}</option>
-                                {% endfor %}
-                            </select>
-
-                            <button type="submit">Adicionar</button>
+                            <div class="task-form-group">
+                                <input type="text" name="title" placeholder="Nova tarefa" required class="task-input">
+                            </div>
+                            <div class="task-form-group">
+                                <textarea name="description" placeholder="Descrição (opcional)" rows="2" class="task-textarea"></textarea>
+                            </div>
+                            <div class="task-form-row">
+                                <input type="date" name="due_date" class="task-date">
+                                <select name="priority" class="task-select">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                            <div class="task-form-group">
+                                <select name="assigned_to" class="task-select-full">
+                                    <option value="">Sem atribuição</option>
+                                    {% for member in project.members.all %}
+                                        <option value="{{ member.id }}">{{ member.username }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-add-task">
+                                <i class="bi bi-plus-circle"></i> Adicionar Tarefa
+                            </button>
                         </form>
 
                         <!-- Listar tarefas deste estado -->
+                        <div class="tasks-list">
                         {% for task in state.tasks.all %}
-                            <div class="task-card">
-                                <strong>{{ task.title }}</strong>
+                            <div class="task-card {% if task.priority == 'high' %}task-priority-high{% elif task.priority == 'medium' %}task-priority-medium{% else %}task-priority-low{% endif %}">
+                                <div class="task-header">
+                                    <strong class="task-title">{{ task.title }}</strong>
+                                    <span class="task-priority-badge priority-{{ task.priority }}">
+                                        {{ task.get_priority_display }}
+                                    </span>
+                                </div>
+                                
                                 {% if task.description %}
-                                <p>{{ task.description }}</p>
+                                <p class="task-description">{{ task.description }}</p>
                                 {% endif %}
 
-                                <p><small>Data: {{ task.due_date| date:"d/m/Y"| default:"—" }}</small></p>
-                                <p><small>Prioridade: {{ task.get_priority_display }}</small></p>
-                                <p><small>Atribuído: {{ task.assigned_to.username|default:"—" }}</small></p>
+                                <div class="task-meta">
+                                    <span class="task-meta-item">
+                                        <i class="bi bi-calendar-event"></i> {{ task.due_date|date:"d/m/Y"|default:"Sem data" }}
+                                    </span>
+                                    <span class="task-meta-item">
+                                        <i class="bi bi-person"></i> {{ task.assigned_to.username|default:"Não atribuído" }}
+                                    </span>
+                                </div>
 
-                                <!-- Apagar -->
-                                <form method="post" action="{% url 'tasks:delete' task.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit">Apagar</button>
-                                </form>
-
-                                <!-- Mover -->
-                                <form method="post" action="{% url 'tasks:move' task.id %}">
-                                    {% csrf_token %}
-                                    <select name="state_id">
-                                        {% for s in states %}
-                                            <option value="{{ s.id }}" {% if s.id == state.id %}selected{% endif %}>
-                                                {{ s.name }}
-                                            </option>
-                                        {% endfor %}
-                                    </select>
-                                    <button type="submit">Mover</button>
-                                </form>
+                                <div class="task-actions">
+                                    <!-- Mover -->
+                                    <form method="post" action="{% url 'tasks:move' task.id %}" class="task-move-form">
+                                        {% csrf_token %}
+                                        <select name="state_id" class="task-move-select">
+                                            {% for s in states %}
+                                                <option value="{{ s.id }}" {% if s.id == state.id %}selected{% endif %}>
+                                                    {{ s.name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                        <button type="submit" class="btn-task-move">
+                                            <i class="bi bi-arrow-right-circle"></i>
+                                        </button>
+                                    </form>
+                                    
+                                    <!-- Apagar -->
+                                    <form method="post" action="{% url 'tasks:delete' task.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn-task-delete" title="Apagar tarefa">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         {% empty %}
-                            <p style="opacity: 0.7;">Sem tarefas.</p>
+                            <p class="no-tasks-message">
+                                <i class="bi bi-inbox"></i> Sem tarefas
+                            </p>
                         {% endfor %}
+                        </div>
 
                     </div>
                 {% endfor %}
 
-                <!-- Create State Card - Changed to button -->
-                <!-- Create State Card - Using div -->
+                <!-- Create State Card -->
                 <div class="create-state-card" data-bs-toggle="modal" data-bs-target="#createStateModal" role="button" tabindex="0">
                     <div class="create-state-content">
                         <span class="plus-icon">+</span>
