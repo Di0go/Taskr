@@ -31,6 +31,33 @@
 
         <h1>{{ project.name }}</h1>
 
+        {% if messages %}
+        <div style="margin: 10px 0;">
+            {% for message in messages %}
+            <div style="color: #ffffff; opacity: 0.9;">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if user == project.owner %}
+        <div style="margin: 15px 0;">
+            <h5 style="color: #ffffff;">Membros do projeto</h5>
+
+            <div style="color: #ffffff; opacity: 0.9; margin-bottom: 10px;">
+            {% for m in project.members.all %}
+                <span style="margin-right: 10px;">• {{ m.username }}</span>
+            {% endfor %}
+            </div>
+
+            <form method="post" action="{% url 'projects:add_member' project.id %}">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="username (ex: diogo)" required>
+            <button type="submit">Adicionar membro</button>
+            </form>
+        </div>
+        {% endif %}
+
+
         <div class="project-delete-project">
             {% if user != project.owner %}
                 <form method="post" action="{% url 'projects:leave_project' project.id %}">

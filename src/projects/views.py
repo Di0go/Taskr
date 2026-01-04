@@ -10,8 +10,10 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Project
 from states.models import State
-from .forms import ProjectForm
+from .forms import ProjectForm, AddMemberForm
 from states.forms import StateForm
+from django.contrib import messages
+from django.contrib.auth import get_user_model
 
 
 
@@ -104,3 +106,20 @@ def leave_project(request, project_id):
         project.members.remove(request.user)
 
     return redirect("projects:index")
+
+@login_required
+def add_member(request, project_id):
+    project = get_object_or_404(Project, pk=project_id, owner=request.user)
+
+    if request.method == "POST":
+        form = AddMemberForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"].strip()
+            User = get_user_model()
+            try:
+                user_to_add = User.objects.get(username=username)
+                project.members.add(user_to_add)
+                messages.success(request, f"{username} adicionado ao projeto.")
+            except User.DoesNotExist:
+                messages.error(request, "Esse utilizador não existe.")
+    return redirect("projects:detail", project_id=project.id)
