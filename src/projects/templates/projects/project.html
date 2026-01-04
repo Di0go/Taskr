@@ -64,13 +64,21 @@
                                 ✕
                             </button>
                         </form>
-                        <div class="state-name-btn">{{ state }}</div>
+                        <div class="state-name-btn">{{ state.name }}</div>
 
                         <!-- Criar tarefa -->
                         <form method="post" action="{% url 'tasks:create' project.id state.id %}">
                             {% csrf_token %}
                             <input type="text" name="title" placeholder="Nova tarefa" required>
                             <input type="text" name="description" placeholder="Descrição (opcional)">
+                            <input type="date" name="due_date">
+
+                            <select name="priority">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+
                             <button type="submit">Adicionar</button>
                         </form>
 
@@ -78,7 +86,13 @@
                         {% for task in state.tasks.all %}
                             <div class="task-card">
                                 <strong>{{ task.title }}</strong>
+                                {% if task.description %}
                                 <p>{{ task.description }}</p>
+                                {% endif %}
+
+                                <p><small>Data: {{ task.due_date| date:"d/m/Y"| default:"—" }}</small></p>
+                                <p><small>Prioridade: {{ task.get_priority_display }}</small></p>
+
 
                                 <!-- Apagar -->
                                 <form method="post" action="{% url 'tasks:delete' task.id %}">

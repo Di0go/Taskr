@@ -33,9 +33,6 @@ class Task(models.Model):
     # ordem dentro de cada coluna
     order = models.PositiveIntegerField(default=0)
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
     class Meta:
         ordering = ["state__order", "order", "-updated_at"]
 
