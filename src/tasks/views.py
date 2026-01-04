@@ -19,7 +19,7 @@ def create_task(request, project_id, state_id):
     state = get_object_or_404(State, id=state_id, project=project)
 
     if request.method == "POST":
-        form = TaskForm(request.POST)
+        form = TaskForm(request.POST, project=project)
         if form.is_valid():
             task = form.save(commit=False)
             task.project = project
@@ -38,7 +38,7 @@ def edit_task(request, task_id):
     task = get_object_or_404(Task, id=task_id, project__members=request.user)
 
     if request.method == "POST":
-        form = TaskForm(request.POST, instance=task)
+        form = TaskForm(request.POST, instance=task, project=task.project)
         if form.is_valid():
             form.save()
     return redirect("projects:detail", project_id=task.project.id)

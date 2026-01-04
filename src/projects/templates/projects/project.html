@@ -79,6 +79,13 @@
                                 <option value="high">High</option>
                             </select>
 
+                            <select name="assigned_to">
+                                <option value="">Sem atribuição</option>
+                                {% for member in project.members.all %}
+                                    <option value="{{ member.id }}">{{ member.username }}</option>
+                                {% endfor %}
+                            </select>
+
                             <button type="submit">Adicionar</button>
                         </form>
 
@@ -92,7 +99,7 @@
 
                                 <p><small>Data: {{ task.due_date| date:"d/m/Y"| default:"—" }}</small></p>
                                 <p><small>Prioridade: {{ task.get_priority_display }}</small></p>
-
+                                <p><small>Atribuído: {{ task.assigned_to.username|default:"—" }}</small></p>
 
                                 <!-- Apagar -->
                                 <form method="post" action="{% url 'tasks:delete' task.id %}">
