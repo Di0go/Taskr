@@ -117,7 +117,8 @@ body {
         }
         
         .text-muted {
-            color: #A5D7E8;
+            color: #ffffff !important;
+            opacity: 0.9;
         }
 
         .logout-btn {
